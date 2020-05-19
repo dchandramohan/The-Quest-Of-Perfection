@@ -1,0 +1,448 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Procedurally Generated Levels Experiment}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{the-quest-of-perfection-prototype}{%
+\section{The Quest of Perfection
+(Prototype)}\label{the-quest-of-perfection-prototype}}
+
+\hypertarget{drawing-a-scene}{%
+\subsection{Drawing a scene}\label{drawing-a-scene}}
+
+I'm testing out procedurally generated levels in this notebook. I
+generated a couple textures and now I'm going to try to put them
+together into a scene!
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} first import useful packages}
+        \PY{k+kn}{from} \PY{n+nn}{ipywidgets} \PY{k}{import} \PY{n}{Image}\PY{p}{,} \PY{n}{HBox} \PY{c+c1}{\PYZsh{} \PYZdq{}HBox\PYZdq{} is for a sanity check}
+        \PY{k+kn}{from} \PY{n+nn}{ipycanvas} \PY{k}{import} \PY{n}{Canvas}\PY{p}{,} \PY{n}{hold\PYZus{}canvas}
+\end{Verbatim}
+
+
+    I'm using the
+\href{https://ipycanvas.readthedocs.io/en/latest/index.html}{ipycanvas
+(Interactive Canvas in Jupyter)} package to make manipulating the images
+easier\ldots{}
+
+    \hypertarget{load-the-images}{%
+\subsection{Load the images}\label{load-the-images}}
+
+Load the texture/sprite images I generated and collect some of their
+properties\ldots{}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{im\PYZus{}Sprite} \PY{o}{=} \PY{n}{Image}\PY{o}{.}\PY{n}{from\PYZus{}file}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{img/sprite0.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{im\PYZus{}txGrnd} \PY{o}{=} \PY{n}{Image}\PY{o}{.}\PY{n}{from\PYZus{}file}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{img/texture\PYZus{}Ground.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{im\PYZus{}txStar} \PY{o}{=} \PY{n}{Image}\PY{o}{.}\PY{n}{from\PYZus{}file}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{img/texture\PYZus{}Gem.png}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{im\PYZus{}Sprite}\PY{o}{.}\PY{n+nv+vm}{\PYZus{}\PYZus{}dict\PYZus{}\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} \{'\_trait\_values': \{'\_model\_module': '@jupyter-widgets/controls',
+          '\_model\_module\_version': '1.5.0',
+          '\_model\_name': 'ImageModel',
+          '\_view\_count': None,
+          '\_view\_module': '@jupyter-widgets/controls',
+          '\_view\_module\_version': '1.5.0',
+          '\_view\_name': 'ImageView',
+          'format': 'png',
+          'height': '',
+          'value': b'\textbackslash{}x89PNG\textbackslash{}r\textbackslash{}n\textbackslash{}x1a\textbackslash{}n\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}rIHDR\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00 \textbackslash{}x00\textbackslash{}x00\textbackslash{}x000\textbackslash{}x08\textbackslash{}x06\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00p\textbackslash{}xacxo\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}x06bKGD\textbackslash{}x00\textbackslash{}x85\textbackslash{}x00Q\textbackslash{}x00(\textbackslash{}xd8\textbackslash{}x8eh\textbackslash{}xe0\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}tpHYs\textbackslash{}x00\textbackslash{}x00.\#\textbackslash{}x00\textbackslash{}x00.\#\textbackslash{}x01x\textbackslash{}xa5?v\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}x07tIME\textbackslash{}x07\textbackslash{}xe3\textbackslash{}x04\textbackslash{}x01\textbackslash{}x07\textbackslash{}x0b4\textbackslash{}xd679\textbackslash{}xd2\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}x19tEXtComment\textbackslash{}x00Created with GIMPW\textbackslash{}x81\textbackslash{}x0e\textbackslash{}x17\textbackslash{}x00\textbackslash{}x00\textbackslash{}x01\textbackslash{}xb0IDATX\textbackslash{}xc3\textbackslash{}xed\textbackslash{}x981n\textbackslash{}xc30\textbackslash{}x0cEI\textbackslash{}xc1\textbackslash{}xcd\textbackslash{}x01z\textbackslash{}x81"\textbackslash{}xc8\textbackslash{}x1e\textbackslash{}xf8\textbackslash{}x0c>\textbackslash{}x84\textbackslash{}xa7\textbackslash{}x9e"[;\textbackslash{}x17\textbackslash{}x1ds\textbackslash{}x10\textbackslash{}x1f"g\textbackslash{}x10\textbackslash{}xbc\textbackslash{}x1bA\textbackslash{}x8f\textbackslash{}xd0\textbackslash{}xd5\textbackslash{}x1d\textbackslash{}xd4\textbackslash{}xa1V\textbackslash{}xa1(\textbackslash{}x94D1\textbackslash{}xb2k \textbackslash{}x15\textbackslash{}x10\$\textbackslash{}x96L\textbackslash{}xbe/\textbackslash{}x9a\textbackslash{}xa2\textbackslash{}x14\textbackslash{}x03\textbackslash{}xdc\{C\textbackslash{}xa1\textbackslash{}x9d)\textbackslash{}xe5\textbackslash{}x0f\textbackslash{}x0b@o\textbackslash{}xf2\textbackslash{}x8d\textbackslash{}x05\textbackslash{}x81"\textbackslash{}x16\textbackslash{}xce\textbackslash{}x05>4\textbackslash{}xdb\textbackslash{}xdf\textbackslash{}xdf\textbackslash{}xc7\textbackslash{}xd39\textbackslash{}xc8\textbackslash{}xc4Rp\textbackslash{}x17\textbackslash{}x18\textbackslash{}x00\textbackslash{}x93\textbackslash{}xdc\textbackslash{}xaa\textbackslash{}xe4\textbackslash{}xcc\#@*\textbackslash{}xca\textbackslash{}x08\textbackslash{}x00\textbackslash{}xa0\textbackslash{}xe6\textbackslash{}n;7\textbackslash{}xa91W@\&\$\textbackslash{}x15\textbackslash{}x1d\textbackslash{}x8c\textbackslash{}n\textbackslash{}x90\textbackslash{}xc2|h\textbackslash{}xc8\textbackslash{}xcf\textbackslash{}xf1t\textbackslash{}xfe\textbackslash{}x11ph\textbackslash{}xb6F\textbackslash{}xea\textbackslash{}x84;\textbackslash{}xe3\textbackslash{}xc0\textbackslash{}xaa@e;\textbackslash{}xa8\textbackslash{}x10\textbackslash{}xb9\}\textbackslash{}x19\textbackslash{}tv\textbackslash{}x05\textbackslash{}x8c\textbackslash{}x89W\%\textbackslash{}x9c\textbackslash{}xc4\textbackslash{}xecSvH-\textbackslash{}xc3\textbackslash{}xc83\textbackslash{}x13\textbackslash{}xaf\textbackslash{}x08\textbackslash{}xc2\textbackslash{}x16\textbackslash{}xa3\textbackslash{}x85\textbackslash{}xc8:\textbackslash{}xc8\textbackslash{}r\}nY\textbackslash{}x9e\textbackslash{}xad\textbackslash{}x14s\textbackslash{}xf7\textbackslash{}x04\textbackslash{}xcc\textbackslash{}xd9\textbackslash{}x88\textbackslash{}xb8y\textbackslash{}xc0)\textbackslash{}xc1\textbackslash{}xdc-3KH\textbackslash{}x0e\textbackslash{}x98\textbackslash{}xdd\textbackslash{}xea\textbackslash{}xba6\textbackslash{}x93\textbackslash{}x90\textbackslash{}xec\textbackslash{}xcfd+;\textbackslash{}x0fP\textbackslash{}xc6Zk\textbackslash{}xaeh l\textbackslash{}xd9\textbackslash{}xe7\textbackslash{}x01\textbackslash{}xe0(\textbackslash{}x974J\textbackslash{}x04r\textbackslash{}xe1\textbackslash{}xef\_\textbackslash{}x1f\textbackslash{}x17\textbackslash{}xd7\textbackslash{}xaf\textbackslash{}x0fOY\textbackslash{}xe3!\textbackslash{}x11(\textbackslash{}x99\textbackslash{}xb9\textbackslash{}x85Y\textbackslash{}x08u\textbackslash{}x1d\textbackslash{}x12\textbackslash{}xe0\textbackslash{}x8bP\textbackslash{}\textbackslash{}\textbackslash{}xb8;C\textbackslash{}xca\textbackslash{}xb9\textbackslash{}xdb\textbackslash{}x17\textbackslash{}x83\textbackslash{}xfb,\%y\textbackslash{}x96\textasciitilde{}\textbackslash{}xb8\textbackslash{}xfd>j<\textbackslash{}xba\textbackslash{}nB\textbackslash{}xb3\textbackslash{}xd7Z\textbackslash{}xa3\textbackslash{}x1d\textbackslash{}x93\textbackslash{}xe6\textbackslash{}x80\textbackslash{}xeb\textbackslash{}x83\textbackslash{}xf2\_q\textbackslash{}x95\textbackslash{}xa6\textbackslash{}xc2\textbackslash{}x9a\textbackslash{}x1a\textbackslash{}x17m\textbackslash{}xc7K\textbackslash{}xb4\textbackslash{}x8a\textbackslash{}xb1v\textbackslash{}x83c]\textbackslash{}xd7\textbackslash{}x01\textbackslash{}x00@\textbackslash{}xdb\textbackslash{}xb6b\textbackslash{}x01*\textbackslash{}xa7h\textbackslash{}x94,@\textbackslash{}x17\textbackslash{}x11h\textbackslash{}x1e?\textbackslash{}xaf\textbackslash{}x8d\textbackslash{}xa6\textbackslash{}xef\textbackslash{}xcdn\textbackslash{}x1ft\textbackslash{}xfc\textbackslash{}xfc\textbackslash{}xf2\textbackslash{}x96\textbackslash{}xbcg\textbackslash{}x1cz\textbackslash{}x881\textbackslash{}xfe<\textbackslash{}x07\textbackslash{}xec\textbackslash{}xa1\textbackslash{}x14\textbackslash{}xfd\textbackslash{}xe32\textbackslash{}xc7x\textbackslash{}x1cz\textbackslash{}x1c\textbackslash{}x87\textbackslash{}x9euo\textbackslash{}x88\textbackslash{}xa1r\textbackslash{}xa1\%\textbackslash{}x9a\textbackslash{}xcbJB7\textbackslash{}xbb\textbackslash{}xbd\textbackslash{}x89E\textbackslash{}x80\{\textbackslash{}xcf-\textbackslash{}'\textbackslash{}x15\textbackslash{}xc3\textbackslash{}xb07R\textbackslash{}xc6:\textbackslash{}x92\textbackslash{}xf0\textbackslash{}xae\textbackslash{}x05T\textbackslash{}x0b\textbackslash{}xbc\#2\textbackslash{}xb1\textbackslash{}\textbackslash{}P\textbackslash{}x0b\textbackslash{}xbd\textbackslash{}xa0\textbackslash{}n\textbackslash{}xfaT\textbackslash{}x0b\textbackslash{}xff32\textbackslash{}xabOB\textbackslash{}xb3\textbackslash{}x00\textbackslash{}xd3\textbackslash{}xfc/\textbackslash{}xc3U\textbackslash{}t\textbackslash{}xf8\textbackslash{}x06s\textbackslash{}xcb\textbackslash{}xd5E\{F\textbackslash{}xc8\textbackslash{}x8e\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00\textbackslash{}x00IEND\textbackslash{}xaeB`\textbackslash{}x82',
+          'width': '',
+          'comm': <ipykernel.comm.comm.Comm at 0x7f668fb0beb0>,
+          'keys': ['\_dom\_classes',
+           '\_model\_module',
+           '\_model\_module\_version',
+           '\_model\_name',
+           '\_view\_count',
+           '\_view\_module',
+           '\_view\_module\_version',
+           '\_view\_name',
+           'format',
+           'height',
+           'layout',
+           'value',
+           'width'],
+          '\_dom\_classes': (),
+          'layout': Layout()\},
+         '\_trait\_notifiers': \{'comm': \{'change': [<traitlets.traitlets.ObserveHandler at 0x7f66b42a6a00>]\}\},
+         '\_trait\_validators': \{\},
+         '\_cross\_validation\_lock': False,
+         '\_model\_id': 'e84e3eec3c4c45c190308523c2ed3ba2'\}
+\end{Verbatim}
+            
+    Ok\ldots{} so what I learned from the above is that the height, width,
+etc, etc, info are not stored automatically when the images is loaded (I
+think)\ldots{} Thankfully I know the dimensions of the images (I also
+think), because I created them!
+
+The following syntax is derived from the examples
+\href{https://ipycanvas.readthedocs.io/en/latest/drawing_images.html}{here}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} hard\PYZhy{}coded width/height in px}
+        \PY{c+c1}{\PYZsh{} ... I\PYZsq{}m adding a little padding to my sprite which is 32 x 48 px}
+        \PY{n}{cSprite} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{36}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{48}\PY{p}{)}
+        \PY{n}{cTxGrnd} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{124}\PY{p}{)}
+        \PY{n}{cTxStar} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{136}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{152}\PY{p}{)}
+        
+        \PY{n}{cSprite}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{im\PYZus{}Sprite}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{cTxGrnd}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{im\PYZus{}txGrnd}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{cTxStar}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{im\PYZus{}txStar}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{n}{cPlatform} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{100}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{56}\PY{p}{)}
+        \PY{n}{cPlatform}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cTxGrnd}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{56}\PY{o}{/}\PY{l+m+mi}{124}\PY{p}{)}\PY{o}{*}\PY{l+m+mi}{600}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{56}\PY{p}{)}
+        
+        \PY{n}{cStar} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{width}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{48}\PY{p}{)}
+        \PY{n}{cStar}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cTxStar}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{width}\PY{o}{=}\PY{l+m+mi}{42}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{48}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} sanity check!}
+        \PY{n}{HBox}\PY{p}{(}\PY{p}{[}\PY{n}{cSprite}\PY{p}{,}\PY{n}{cSprite}\PY{p}{,}\PY{n}{cSprite}\PY{p}{,}\PY{n}{cTxGrnd}\PY{p}{,}\PY{n}{cTxStar}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+HBox(children=(Canvas(height=48, width=36), Canvas(height=48, width=36), Canvas(height=48, width=36), Canvas(h…
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{from} \PY{n+nn}{random} \PY{k}{import} \PY{n}{randint}
+        
+        \PY{n}{cScene} \PY{o}{=} \PY{n}{Canvas}\PY{p}{(}\PY{n}{Width}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{l+m+mi}{600}\PY{p}{)}
+        
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{fill\PYZus{}style} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}a9cafc}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{fill\PYZus{}rect}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{,} \PY{l+m+mi}{600}\PY{p}{)}
+        
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cTxGrnd}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{600}\PY{o}{\PYZhy{}}\PY{l+m+mi}{124}\PY{p}{)}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cSprite}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{600}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{48}\PY{o}{+}\PY{l+m+mi}{124}\PY{p}{)}\PY{p}{)}
+        
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cPlatform}\PY{p}{,} \PY{l+m+mi}{275}\PY{p}{,} \PY{l+m+mi}{250}\PY{p}{)}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cStar}\PY{p}{,} 
+                          \PY{l+m+mi}{275} \PY{o}{+} \PY{l+m+mi}{50} \PY{o}{\PYZhy{}} \PY{l+m+mi}{42}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{c+c1}{\PYZsh{} x\PYZhy{}pos: centered on platform}
+                          \PY{l+m+mi}{250} \PY{o}{\PYZhy{}} \PY{l+m+mi}{50}\PY{p}{)} \PY{c+c1}{\PYZsh{} y\PYZhy{}pos: hovering 2 px over platform}
+        
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cPlatform}\PY{p}{,} \PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{50}\PY{p}{,}\PY{l+m+mi}{200}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{350}\PY{p}{)}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cPlatform}\PY{p}{,} \PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{300}\PY{p}{,}\PY{l+m+mi}{450}\PY{p}{)}\PY{p}{,} \PY{l+m+mi}{350}\PY{p}{)}
+        
+        \PY{n}{xtop} \PY{o}{=}  \PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{25}\PY{p}{,}\PY{l+m+mi}{475}\PY{p}{)}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cPlatform}\PY{p}{,} \PY{n}{xtop}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{)}
+        \PY{n}{cScene}\PY{o}{.}\PY{n}{draw\PYZus{}image}\PY{p}{(}\PY{n}{cStar}\PY{p}{,} 
+                          \PY{n}{xtop} \PY{o}{+} \PY{l+m+mi}{50} \PY{o}{\PYZhy{}} \PY{l+m+mi}{42}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{c+c1}{\PYZsh{} x\PYZhy{}pos: centered on platform}
+                          \PY{l+m+mi}{100} \PY{o}{\PYZhy{}} \PY{l+m+mi}{50}\PY{p}{)} \PY{c+c1}{\PYZsh{} y\PYZhy{}pos: hovering 2 px over platform}
+        
+        \PY{n}{cScene}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+Canvas(height=600)
+    \end{verbatim}
+
+    
+    If you run the previous cell a few times the blocks on the lowest level
+and the blocks on the highest level change positions based on the random
+value returned by \texttt{randint}!
+
+So we've done it\ldots{} we've generated a basic procedurally generated
+map\ldots{}
+
+In order to make these maps actually winnable we would have to put in
+some logic so that, for example, the blocks/platforms aren't too far
+apart for the sprite to jump to/from.
+
+But at least it's a start!
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
